@@ -3,9 +3,27 @@
 // ENQUEUE STYLES
 // ===========================================
 add_action('wp_enqueue_scripts', function() {
+    $theme_uri = get_stylesheet_directory_uri();
+    $theme_dir = get_stylesheet_directory();
+
     wp_enqueue_style('astra-parent', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('astra-child', get_stylesheet_uri(), ['astra-parent']);
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    if (is_page_template('template-home.php')) {
+        $home_css = $theme_dir . '/assets/css/home.css';
+        wp_enqueue_style('ti3d-home', $theme_uri . '/assets/css/home.css', ['astra-child'], file_exists($home_css) ? filemtime($home_css) : null);
+    }
+
+    if (function_exists('is_product_category') && is_product_category()) {
+        $shop_css = $theme_dir . '/assets/css/shop.css';
+        wp_enqueue_style('ti3d-shop', $theme_uri . '/assets/css/shop.css', ['astra-child'], file_exists($shop_css) ? filemtime($shop_css) : null);
+    }
+
+    if (function_exists('is_account_page') && is_account_page()) {
+        $account_css = $theme_dir . '/assets/css/account.css';
+        wp_enqueue_style('ti3d-account', $theme_uri . '/assets/css/account.css', ['astra-child'], file_exists($account_css) ? filemtime($account_css) : null);
+    }
 });
 
 // ===========================================
@@ -462,3 +480,68 @@ add_action('admin_enqueue_scripts', function($hook) {
         wp_enqueue_media();
     }
 });
+
+// ===========================================
+// CABECERA VISUAL EN CATEGORIAS DE PRODUCTO
+// ===========================================
+
+/**
+ * Obtiene la imagen de cabecera para una categoria de producto.
+ * Prioridad:
+ * 1) Miniatura de la categoria en WooCommerce.
+ * 2) Fallback por slug usando imagenes del tema.
+ */
+function ti3d_get_product_cat_header_image_url($term) {
+    if (!$term || is_wp_error($term)) {
+        return '';
+    }
+
+    $thumb_id = get_term_meta($term->term_id, 'thumbnail_id', true);
+    if (!empty($thumb_id)) {
+        $thumb_url = wp_get_attachment_image_url((int) $thumb_id, 'full');
+        if (!empty($thumb_url)) {
+            return $thumb_url;
+        }
+    }
+
+    $fallback_by_slug = [
+        'camper'     => '/assets/img/cat-camper.jpg',
+        '4x4'        => '/assets/img/cat-4x4.jpg',
+        'nautica'    => '/assets/img/cat-nautica.jpg',
+        'audio'      => '/assets/img/cat-audio.jpg',
+        'industrial' => '/assets/img/cat-industrial.jpg',
+    ];
+
+    $slug = isset($term->slug) ? (string) $term->slug : '';
+    if ($slug && isset($fallback_by_slug[$slug])) {
+        return get_stylesheet_directory_uri() . $fallback_by_slug[$slug];
+    }
+
+    return '';
+}
+
+add_action('woocommerce_before_shop_loop', function() {
+    if (!is_product_category()) {
+        return;
+    }
+
+    $term = get_queried_object();
+    if (!$term || is_wp_error($term)) {
+        return;
+    }
+
+    $image_url = ti3d_get_product_cat_header_image_url($term);
+    if (empty($image_url)) {
+        return;
+    }
+    ?>
+    <section class="ti3d-cat-hero" aria-label="<?php echo esc_attr($term->name); ?>">
+        <div class="ti3d-cat-hero__bg" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+        <div class="ti3d-cat-hero__overlay"></div>
+        <div class="ti3d-cat-hero__content">
+            <span class="ti3d-cat-hero__eyebrow">Categoria</span>
+            <h2 class="ti3d-cat-hero__title"><?php echo esc_html($term->name); ?></h2>
+        </div>
+    </section>
+    <?php
+}, 5);

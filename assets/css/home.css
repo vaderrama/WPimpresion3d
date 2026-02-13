@@ -1,0 +1,188 @@
+/* ===========================================
+   HOME - CATEGORIAS CON IMAGEN (MOSAICO)
+   =========================================== */
+
+#home-premium .categories-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  grid-template-areas:
+    "camper x4 nautica"
+    "camper audio industrial";
+}
+
+/* Asignación de áreas por slug */
+#home-premium .category-camper { grid-area: camper; min-height: 360px; }
+#home-premium .category-4x4 { grid-area: x4; min-height: 170px; }
+#home-premium .category-nautica { grid-area: nautica; min-height: 170px; }
+#home-premium .category-audio { grid-area: audio; min-height: 170px; }
+#home-premium .category-industrial { grid-area: industrial; min-height: 170px; }
+
+#home-premium .category-card--image {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0b0b0b;
+  padding: 0 !important;              /* mata padding del card antiguo */
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+  transition: var(--transition);
+}
+
+/* Fondo */
+#home-premium .category-card--image .category-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  transition: transform .5s ease;
+  z-index: 0;
+}
+
+/* Overlay: oscurecer para texto + “shine” sutil */
+#home-premium .category-card--image .category-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.85) 75%),
+    radial-gradient(ellipse at 30% 20%, rgba(201,162,39,0.12) 0%, transparent 55%);
+  z-index: 1;
+}
+
+/* Contenido */
+#home-premium .category-card--image .category-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 22px 22px;
+}
+
+#home-premium .category-card--image .category-pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(201,162,39,0.25);
+  margin-bottom: 10px;
+}
+
+#home-premium .category-card--image .category-name {
+  margin: 0 0 6px 0;
+  color: var(--color-text-bright);
+  font-size: 1.25rem;
+}
+
+#home-premium .category-card--image .category-desc {
+  margin: 0;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  max-width: 46ch;
+}
+
+/* Hover pro */
+#home-premium .category-card--image:hover {
+  border-color: rgba(201,162,39,0.35);
+  box-shadow: 0 0 40px rgba(201,162,39,0.18);
+  transform: translateY(-4px);
+}
+
+#home-premium .category-card--image:hover .category-bg {
+  transform: scale(1.08);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  #home-premium .categories-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "camper camper"
+      "x4 nautica"
+      "audio industrial";
+  }
+  #home-premium .category-camper { min-height: 260px; }
+}
+
+@media (max-width: 640px) {
+  #home-premium .categories-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "camper"
+      "x4"
+      "nautica"
+      "audio"
+      "industrial";
+  }
+  #home-premium .category-camper,
+  #home-premium .category-4x4,
+  #home-premium .category-nautica,
+  #home-premium .category-audio,
+  #home-premium .category-industrial { min-height: 190px; }
+}
+/* ===========================================
+   HOME (Inicio Premium): Hero final consolidado
+   =========================================== */
+body.ti3d-home::after {
+  opacity: 0 !important;
+}
+
+#home-premium .hero-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+#home-premium .hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/wp-content/themes/astra-child/assets/img/hero-3d-factory-cyan.jpg") center/cover no-repeat;
+  filter: saturate(1.05) contrast(1.08) brightness(0.60);
+  transform: scale(1.03);
+  z-index: 0;
+  opacity: 0.78;
+}
+
+#home-premium .hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 55% 40%, rgba(0, 200, 255, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 35%, rgba(201, 162, 39, 0.10) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.90) 65%, rgba(0, 0, 0, 0.96) 100%);
+  z-index: 1;
+}
+
+#home-premium .hero-section .hero-overlay {
+  background: transparent !important;
+}
+
+#home-premium .hero-section .hero-content,
+#home-premium .hero-section .hero-scroll-indicator {
+  position: relative;
+  z-index: 3;
+}
+
+#home-premium .hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+
+#home-premium .hero-title,
+#home-premium .hero-subtitle {
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+

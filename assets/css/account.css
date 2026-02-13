@@ -1,0 +1,239 @@
+/* ===========================================
+   29. SECCION MIS MODELOS 3D
+   =========================================== */
+
+/* Icono en el menú */
+.woocommerce-account .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--modelos-3d a::before {
+    content: '🎨' !important;
+}
+
+/* Contenedor principal */
+.modelos-3d-container {
+    width: 100%;
+}
+
+.modelos-3d-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modelos-3d-header h2 {
+    color: var(--color-gold) !important;
+    font-size: 1.3rem !important;
+    margin-bottom: 10px !important;
+}
+
+.modelos-3d-header p {
+    color: var(--color-gray-text) !important;
+    margin: 0;
+}
+
+/* Estado vacío */
+.modelos-3d-empty {
+    text-align: center;
+    padding: 60px 30px;
+    background: var(--color-dark);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.modelos-3d-empty .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.modelos-3d-empty h3 {
+    color: var(--color-text-bright) !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 15px !important;
+}
+
+.modelos-3d-empty p {
+    color: var(--color-gray-text) !important;
+    max-width: 400px;
+    margin: 0 auto 25px !important;
+    line-height: 1.7;
+}
+
+.modelos-3d-empty .btn-solicitar {
+    display: inline-block;
+    background: var(--gradient-gold) !important;
+    color: var(--color-black) !important;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.modelos-3d-empty .btn-solicitar:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Grid de modelos */
+.modelos-3d-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Card de modelo */
+.modelo-card {
+    background: var(--color-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.modelo-card:hover {
+    border-color: rgba(201, 162, 39, 0.4);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Visor 3D */
+.modelo-viewer {
+    position: relative;
+    background: var(--color-black);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modelo-viewer model-viewer {
+    width: 100%;
+    height: 280px;
+    --poster-color: transparent;
+}
+
+.modelo-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--color-gray-text);
+    font-size: 0.9rem;
+    gap: 15px;
+}
+
+.modelo-loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Info del modelo */
+.modelo-info {
+    padding: 20px;
+}
+
+.modelo-info h3 {
+    color: var(--color-text-bright) !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 8px !important;
+}
+
+.modelo-desc {
+    color: var(--color-gray-text) !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 15px !important;
+    line-height: 1.6;
+}
+
+.modelo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.modelo-fecha,
+.modelo-estado {
+    font-size: 0.8rem;
+    color: var(--color-gray-text);
+    background: var(--color-black);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+}
+
+.modelo-estado.estado-revision {
+    color: #f0ad4e;
+}
+
+.modelo-estado.estado-aprobado {
+    color: #5cb85c;
+}
+
+.modelo-estado.estado-produccion {
+    color: #5bc0de;
+}
+
+.modelo-estado.estado-enviado {
+    color: var(--color-gold);
+}
+
+/* Botón descargar */
+.modelo-download {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    background: rgba(201, 162, 39, 0.1);
+    color: var(--color-gold) !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-top: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.modelo-download:hover {
+    background: var(--color-gold);
+    color: var(--color-black) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modelos-3d-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modelos-3d-empty {
+        padding: 40px 20px;
+    }
+}
+
+/* ===========================================
+   30. FIX BOTÓN MODELOS 3D
+   =========================================== */
+
+.modelos-3d-empty .btn-solicitar {
+    display: inline-block !important;
+    background: var(--gradient-gold) !important;
+    color: var(--color-black) !important;
+    padding: 16px 32px !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    text-decoration: none !important;
+    transition: var(--transition) !important;
+    box-shadow: var(--shadow-gold) !important;
+    border: none !important;
+}
+
+.modelos-3d-empty .btn-solicitar:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 0 40px var(--color-gold-glow) !important;
+    color: var(--color-black) !important;
+}
+
