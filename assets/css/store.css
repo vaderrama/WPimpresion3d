@@ -1,0 +1,532 @@
+/* ===========================================
+   9. WOOCOMMERCE - TIENDA
+   =========================================== */
+.woocommerce ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.woocommerce ul.products li.product {
+    background: var(--color-dark);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 0;
+    margin: 0 !important;
+    width: 100% !important;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.woocommerce ul.products li.product:hover {
+    border-color: var(--color-gold);
+    box-shadow: var(--shadow-gold);
+    transform: translateY(-5px);
+}
+
+.woocommerce ul.products li.product img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-size: 1.1rem !important;
+    color: var(--color-text-bright) !important;
+    padding: 20px 20px 8px !important;
+    margin: 0 !important;
+}
+
+.woocommerce ul.products li.product .price {
+    color: var(--color-gold) !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    padding: 0 20px 15px !important;
+}
+
+.woocommerce ul.products li.product .button {
+    margin: 0 20px 20px !important;
+    width: calc(100% - 40px) !important;
+    text-align: center;
+}
+
+
+   10. WOOCOMMERCE - CARRITO
+   =========================================== */
+.woocommerce-cart .woocommerce {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.woocommerce table.cart,
+.woocommerce table.shop_table {
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.woocommerce table.cart th,
+.woocommerce table.shop_table th {
+    background: var(--color-gray-dark) !important;
+    color: var(--color-text-bright) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 15px !important;
+}
+
+.woocommerce table.cart td,
+.woocommerce table.shop_table td {
+    color: var(--color-text) !important;
+    padding: 15px !important;
+    border-color: var(--color-border) !important;
+    background: transparent !important;
+}
+
+.woocommerce table.cart td.product-name a {
+    color: var(--color-gold) !important;
+}
+
+.woocommerce .cart_totals {
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 25px !important;
+}
+
+.woocommerce .cart_totals h2 {
+    color: var(--color-text-bright) !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+
+   13. WOOCOMMERCE - CHECKOUT
+   =========================================== */
+.woocommerce-checkout .woocommerce {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.woocommerce-checkout h3 {
+    color: var(--color-text-bright) !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.woocommerce-checkout .form-row label {
+    color: var(--color-text-bright) !important;
+    font-weight: 500;
+}
+
+.woocommerce-checkout .form-row input.input-text,
+.woocommerce-checkout .form-row textarea,
+.woocommerce-checkout .form-row select {
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text-bright) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 12px 16px !important;
+}
+
+.woocommerce-checkout #payment {
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 25px !important;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li label {
+    color: var(--color-text-bright) !important;
+}
+
+.woocommerce-checkout #payment div.payment_box {
+    background: var(--color-gray-dark) !important;
+    color: var(--color-text) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+
+   14. MENSAJES WOOCOMMERCE
+   =========================================== */
+.woocommerce-message,
+.woocommerce-info {
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-left: 4px solid var(--color-gold) !important;
+    color: var(--color-text) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 15px 20px !important;
+}
+
+.woocommerce-error {
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-left: 4px solid var(--color-error) !important;
+    color: var(--color-text) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+
+   23. CARRITO - REDISEÑO COMPLETO
+   =========================================== */
+
+/* Contenedor principal del carrito */
+.woocommerce-cart .site-content {
+    padding: 40px 20px;
+}
+
+.woocommerce-cart .woocommerce {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--color-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+}
+
+/* Título del carrito */
+.woocommerce-cart .entry-header {
+    padding: 20px 0 30px;
+}
+
+.woocommerce-cart .entry-title {
+    font-size: 1.6rem !important;
+    margin-bottom: 0 !important;
+}
+
+/* Tabla del carrito */
+.woocommerce table.cart {
+    background: var(--color-black) !important;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden;
+}
+
+/* Botones de cantidad +/- REDISEÑADOS */
+.woocommerce .quantity {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-gray-dark);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.woocommerce .quantity .qty {
+    width: 45px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    text-align: center;
+    background: var(--color-black) !important;
+    border: none !important;
+    color: var(--color-text-bright) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600;
+    -moz-appearance: textfield;
+}
+
+.woocommerce .quantity .qty::-webkit-outer-spin-button,
+.woocommerce .quantity .qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.woocommerce .quantity .minus,
+.woocommerce .quantity .plus {
+    width: 32px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    background: var(--color-gray-dark) !important;
+    border: none !important;
+    color: var(--color-gray-text) !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+
+.woocommerce .quantity .minus:hover,
+.woocommerce .quantity .plus:hover {
+    background: var(--color-gold) !important;
+    color: var(--color-black) !important;
+    transform: none !important;
+}
+
+/* Botón eliminar artículo */
+.woocommerce table.cart .product-remove a.remove,
+.woocommerce a.remove {
+    width: auto !important;
+    height: auto !important;
+    font-size: 0.8rem !important;
+    padding: 8px 16px !important;
+    background: transparent !important;
+    border: 1px solid var(--color-error) !important;
+    color: var(--color-error) !important;
+    border-radius: var(--radius-sm) !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+.woocommerce a.remove:hover {
+    background: var(--color-error) !important;
+    color: var(--color-white) !important;
+}
+
+/* Totales del carrito */
+.woocommerce-cart .cart-collaterals {
+    margin-top: 30px;
+}
+
+.woocommerce-cart .cart_totals {
+    background: var(--color-black) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 30px !important;
+}
+
+/* Botón finalizar compra - DORADO */
+.woocommerce .wc-proceed-to-checkout a.checkout-button,
+.checkout-button {
+    background: var(--gradient-gold) !important;
+    color: var(--color-black) !important;
+    font-size: 0.95rem !important;
+    padding: 16px 30px !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    box-shadow: var(--shadow-gold) !important;
+}
+
+.woocommerce .wc-proceed-to-checkout a.checkout-button:hover {
+    transform: translateY(-2px) !important;
+}
+
+
+   WOOCOMMERCE CART BLOCK - fondo profesional
+   =========================================== */
+
+.woocommerce-cart .wp-block-woocommerce-cart {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__main,
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__sidebar {
+    background: var(--color-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: var(--shadow-md);
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__main {
+    margin-bottom: 20px;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-product-name,
+.woocommerce-cart .wp-block-woocommerce-cart a {
+    color: var(--color-gold) !important;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-quantity-selector input,
+.woocommerce-cart .wp-block-woocommerce-cart input,
+.woocommerce-cart .wp-block-woocommerce-cart select {
+    background: var(--color-black) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text-bright) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-quantity-selector__button {
+    background: var(--color-gray-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-gray-text) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-quantity-selector__button:hover {
+    background: var(--color-gold) !important;
+    color: var(--color-black) !important;
+    border-color: var(--color-gold) !important;
+}
+
+/* Botón checkout del bloque */
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-button,
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__submit-button {
+    background: var(--gradient-gold) !important;
+    color: var(--color-black) !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    box-shadow: var(--shadow-gold) !important;
+}
+
+
+
+   HOTFIX: REPARAR CART BLOCK ROTO
+   Pegar al final del style.css
+   =========================================== */
+
+/* 1) Deshacer el grid forzado anterior (por si está activo) */
+@media (min-width: 900px) {
+  .woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart {
+    display: block !important;
+  }
+}
+
+/* 2) Layout seguro en 2 columnas usando el wrapper real del bloque */
+@media (min-width: 900px) {
+  .woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__form {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr) !important;
+    gap: 26px !important;
+    align-items: start !important;
+  }
+
+  .woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__main,
+  .woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__sidebar {
+    min-width: 0 !important; /* evita overflow raro */
+  }
+}
+
+/* 3) Evitar que los textos rompan palabra por palabra */
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__sidebar * {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: manual !important;
+}
+
+/* 4) Sidebar y botón checkout con ancho correcto */
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__sidebar {
+  width: 100% !important;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__submit-button,
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-button {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* 5) Por si algún estilo global está limitando anchuras */
+.woocommerce-cart .wp-block-woocommerce-cart {
+  width: 100% !important;
+}
+
+
+   FIX: +/- quantity selector (sin glow / sin "seleccionado")
+   =========================================== */
+
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector__button,
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector input {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  background-image: none !important;
+}
+
+/* Estado normal */
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector {
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  background: var(--color-black) !important;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector__button {
+  width: 38px !important;
+  height: 38px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(255,255,255,0.03) !important;
+  color: var(--color-gray-text) !important;
+}
+
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector input {
+  width: 46px !important;
+  height: 38px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--color-text-bright) !important;
+}
+
+/* Hover suave */
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector__button:hover {
+  box-shadow: none !important;
+  transform: none !important;
+  background: rgba(201, 162, 39, 0.10) !important;
+  color: var(--color-gold) !important;
+}
+
+/* Quitar el look de "seleccionado" en focus/active */
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector__button:focus,
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector__button:focus-visible,
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector__button:active,
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector input:focus,
+.woocommerce-cart .wp-block-woocommerce-cart
+.wc-block-components-quantity-selector input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+
+   LAYOUT: carrito en 2 columnas (main + sidebar)
+   =========================================== */
+
+@media (min-width: 980px) {
+  /* wrapper robusto: aplica al que exista */
+  .woocommerce-cart .wp-block-woocommerce-cart :is(.wc-block-cart__form, .wc-block-cart, .wc-block-cart__wrapper, .wp-block-woocommerce-cart) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr) !important;
+    gap: 28px !important;
+    align-items: start !important;
+  }
+
+  .woocommerce-cart .wp-block-woocommerce-cart :is(.wc-block-cart__main, .wc-block-cart__sidebar) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Sidebar sticky (opcional pero queda pro) */
+  .woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__sidebar {
+    position: sticky;
+    top: 110px;
+  }
+}
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-cart__submit-button,
+.woocommerce-cart .wp-block-woocommerce-cart .wc-block-components-button {
+  width: 100% !important;
+  max-width: none !important;
+}
+

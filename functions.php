@@ -10,6 +10,14 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_style('astra-child', get_stylesheet_uri(), ['astra-parent']);
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+    $footer_css = $theme_dir . '/assets/css/footer.css';
+    wp_enqueue_style('ti3d-footer', $theme_uri . '/assets/css/footer.css', ['astra-child'], file_exists($footer_css) ? filemtime($footer_css) : null);
+
+    if (function_exists('is_woocommerce') && (is_woocommerce() || is_cart() || is_checkout())) {
+        $store_css = $theme_dir . '/assets/css/store.css';
+        wp_enqueue_style('ti3d-store', $theme_uri . '/assets/css/store.css', ['astra-child'], file_exists($store_css) ? filemtime($store_css) : null);
+    }
+
     if (is_page_template('template-home.php')) {
         $home_css = $theme_dir . '/assets/css/home.css';
         wp_enqueue_style('ti3d-home', $theme_uri . '/assets/css/home.css', ['astra-child'], file_exists($home_css) ? filemtime($home_css) : null);
