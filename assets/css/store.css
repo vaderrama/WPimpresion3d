@@ -426,6 +426,118 @@
   max-width: none !important;
 }
 
+/* ===========================================
+   SINGLE PRODUCT - VALORACIONES (UI PREMIUM)
+   =========================================== */
+.single-product .woocommerce-Reviews,
+.single-product #review_form_wrapper,
+.single-product #review_form {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.single-product #review_form_wrapper {
+  padding: 16px !important;
+  background: rgba(255, 255, 255, 0.015) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.single-product #review_form .comment-reply-title,
+.single-product #review_form .comment-form-rating label,
+.single-product #review_form .comment-form-comment label {
+  color: var(--color-text-bright) !important;
+  font-weight: 600 !important;
+}
+
+.single-product #review_form .comment-form-rating,
+.single-product #review_form .comment-form-comment {
+  margin-bottom: 14px !important;
+}
+
+.single-product #review_form textarea,
+.single-product #review_form input[type="text"],
+.single-product #review_form input[type="email"] {
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: var(--color-text-bright) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 12px 14px !important;
+  box-shadow: none !important;
+}
+
+.single-product #review_form textarea:focus,
+.single-product #review_form input[type="text"]:focus,
+.single-product #review_form input[type="email"]:focus {
+  outline: none !important;
+  border-color: rgba(201, 162, 39, 0.55) !important;
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.18) !important;
+}
+
+.single-product #review_form .stars a {
+  color: var(--color-gold) !important;
+}
+
+/* ===========================================
+   SINGLE PRODUCT - AJUSTES VISUALES
+   =========================================== */
+
+/* Titulo principal: blanco para contraste/jerarquia */
+.single-product .product_title,
+.single-product .entry-title {
+  color: var(--color-text-bright) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+/* Elementos azules -> dorado */
+.single-product .summary .price,
+.single-product .summary .price .amount,
+.single-product .summary .price ins,
+.single-product .summary .price bdi,
+.single-product .woocommerce-breadcrumb a,
+.single-product .woocommerce-breadcrumb,
+.single-product .woocommerce-tabs .tabs li a,
+.single-product .woocommerce-tabs .tabs li.active a,
+.single-product #tab-title-reviews a,
+.single-product #tab-title-description a,
+.single-product #tab-title-additional_information a,
+.single-product .comment-reply-title,
+.single-product .woocommerce-Reviews-title,
+.single-product .star-rating span::before {
+  color: var(--color-gold) !important;
+}
+
+.single-product .woocommerce-tabs .tabs li a {
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+}
+
+.single-product .woocommerce-tabs .tabs li.active {
+  border-bottom-color: var(--color-gold) !important;
+}
+
+/* Ocultar categoria duplicada bajo el precio */
+.single-product .product_meta .posted_in {
+  display: none !important;
+}
+
+/* Ocultar categoria sobre el titulo (si el tema la imprime) */
+.single-product .summary .ast-woo-product-category,
+.single-product .summary .product-category,
+.single-product .summary .posted_in {
+  display: none !important;
+}
+
+/* Meta restante legible */
+.single-product .product_meta,
+.single-product .product_meta a {
+  color: var(--color-text) !important;
+}
+
 /* 5) Por si algún estilo global está limitando anchuras */
 .woocommerce-cart .wp-block-woocommerce-cart {
   width: 100% !important;

@@ -158,8 +158,44 @@ add_filter('body_class', function ($classes) {
     if (is_page_template('template-home.php')) {
         $classes[] = 'ti3d-home';
     }
+
+    if (function_exists('is_page') && is_page('solicitar-presupuesto')) {
+        $classes[] = 'ti3d-quote-page';
+    }
+
+    if (
+        function_exists('is_account_page')
+        && is_account_page()
+        && !is_user_logged_in()
+        && isset($_GET['register'])
+        && sanitize_text_field(wp_unslash($_GET['register'])) === '1'
+    ) {
+        $classes[] = 'ti3d-show-register';
+    }
+
     return $classes;
 });
+
+// ===========================================
+// MI CUENTA (NO LOGUEADO): LOGIN + ENLACE A REGISTRO
+// ===========================================
+add_action('woocommerce_login_form_end', function () {
+    if (!function_exists('wc_get_page_permalink')) {
+        return;
+    }
+
+    $register_url = add_query_arg('register', '1', wc_get_page_permalink('myaccount'));
+    echo '<p class="ti3d-account-switch">¿No tienes cuenta? <a href="' . esc_url($register_url) . '">Crear cuenta</a></p>';
+}, 20);
+
+add_action('woocommerce_register_form_end', function () {
+    if (!function_exists('wc_get_page_permalink')) {
+        return;
+    }
+
+    $login_url = wc_get_page_permalink('myaccount');
+    echo '<p class="ti3d-account-switch">¿Ya tienes cuenta? <a href="' . esc_url($login_url) . '">Acceder</a></p>';
+}, 20);
 
 // ===========================================
 // PARTÍCULAS GLOBALES (fondo) - LIGERO
@@ -179,8 +215,8 @@ add_action('wp_footer', function () {
 
       let w,h,dpr;
       const P = [];
-      const MAX = 60;       // ligero
-      const SPEED = 0.16;   // caída lenta
+      const MAX = 78;       // ligero pero visible
+      const SPEED = 0.09;   // movimiento mas flotante
 
       const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduceMotion) return;
@@ -199,8 +235,9 @@ add_action('wp_footer', function () {
           y: rand(-h, h),
           r: rand(0.7, 1.9),
           a: rand(0.07, 0.22),
-          vy: rand(SPEED, SPEED+0.35),
+          vy: rand(SPEED, SPEED+0.22),
           vx: rand(-0.05, 0.05),
+          t: rand(0, Math.PI * 2),
           hue: Math.random() < 0.86 ? '0,200,255' : '201,162,39' // mayoría cian, algunos dorados
         });
       }
@@ -216,7 +253,8 @@ add_action('wp_footer', function () {
 
         for(let i=0;i<P.length;i++){
           const p = P[i];
-          p.x += p.vx;
+          p.t += 0.012;
+          p.x += p.vx + Math.sin(p.t) * 0.09;
           p.y += p.vy;
 
           if(p.y > h+20){ p.y = -20; p.x = rand(0,w); }

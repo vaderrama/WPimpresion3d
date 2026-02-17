@@ -69,3 +69,8 @@
     min-height: 200px;
   }
 }
+
+/* Oculta titulo duplicado (se mantiene breadcrumb + titulo del hero) */
+body.tax-product_cat .woocommerce-products-header__title.page-title {
+  display: none !important;
+}

@@ -268,7 +268,6 @@ window.addEventListener('scroll', function() {
   const ctx = canvas.getContext('2d');
 
   let w, h, dpr;
-  let mouse = { x: 0, y: 0, vx: 0, vy: 0, active: false };
   const particles = [];
   const MAX = 70;
 
@@ -303,21 +302,6 @@ window.addEventListener('scroll', function() {
     for (let i=0;i<MAX;i++) spawn();
   }
 
-  function onMove(e){
-    const rect = hero.getBoundingClientRect();
-    const x = (e.clientX - rect.left);
-    const y = (e.clientY - rect.top);
-    mouse.vx = x - mouse.x;
-    mouse.vy = y - mouse.y;
-    mouse.x = x; mouse.y = y;
-    mouse.active = (x>=0 && y>=0 && x<=w && y<=h);
-
-    if (mouse.active && (Math.abs(mouse.vx)+Math.abs(mouse.vy) > 2)) {
-      spawn(mouse.x, mouse.y);
-      if (particles.length > MAX+30) particles.splice(0, particles.length-(MAX+30));
-    }
-  }
-
   function tick(){
     ctx.clearRect(0,0,w,h);
 
@@ -331,16 +315,6 @@ window.addEventListener('scroll', function() {
       if (p.x < -10) p.x = w+10;
       if (p.x > w+10) p.x = -10;
       if (p.y > h+20) p.y = -20;
-
-      if (mouse.active){
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
-        if (dist < 180){
-          p.vx += (dx/dist) * 0.003;
-          p.vy += (dy/dist) * 0.003;
-        }
-      }
 
       ctx.beginPath();
       ctx.fillStyle = `rgba(0,200,255,${p.a})`;
@@ -372,8 +346,6 @@ window.addEventListener('scroll', function() {
   }
 
   window.addEventListener('resize', resize);
-  window.addEventListener('mousemove', onMove, { passive: true });
-
   init();
   tick();
 })();

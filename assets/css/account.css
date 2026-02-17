@@ -1248,7 +1248,7 @@
     padding: 30px 20px;
 }
 
-.woocommerce-account .woocommerce {
+.woocommerce-account.logged-in .woocommerce {
     display: grid !important;
     grid-template-columns: 280px minmax(0, 1fr) !important;
     gap: 28px !important;
@@ -1259,16 +1259,16 @@
     padding: 30px !important;
 }
 
-.woocommerce-account .woocommerce-MyAccount-navigation {
+.woocommerce-account.logged-in .woocommerce-MyAccount-navigation {
     grid-column: 1 !important;
     width: 100% !important;
 }
 
-.woocommerce-account .woocommerce-MyAccount-navigation ul li a {
+.woocommerce-account.logged-in .woocommerce-MyAccount-navigation ul li a {
     min-height: 52px;
 }
 
-.woocommerce-account .woocommerce-MyAccount-content {
+.woocommerce-account.logged-in .woocommerce-MyAccount-content {
     grid-column: 2 !important;
     width: 100% !important;
     max-width: none !important;
@@ -1276,13 +1276,335 @@
 }
 
 @media (max-width: 900px) {
-    .woocommerce-account .woocommerce {
+    .woocommerce-account.logged-in .woocommerce {
         grid-template-columns: 1fr !important;
     }
 
-    .woocommerce-account .woocommerce-MyAccount-content,
-    .woocommerce-account .woocommerce-MyAccount-navigation {
+    .woocommerce-account.logged-in .woocommerce-MyAccount-content,
+    .woocommerce-account.logged-in .woocommerce-MyAccount-navigation {
         grid-column: 1 !important;
     }
+}
+
+/* Hotfix: asegurar layout correcto en login/registro (usuario no logueado) */
+body.woocommerce-account:not(.logged-in) .woocommerce {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+    max-width: 900px !important;
+}
+
+body.woocommerce-account:not(.logged-in) .woocommerce > .u-columns {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.woocommerce-account:not(.logged-in) .woocommerce .u-columns {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 30px !important;
+}
+
+body.woocommerce-account:not(.logged-in) .woocommerce .u-column1,
+body.woocommerce-account:not(.logged-in) .woocommerce .u-column2 {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+@media (max-width: 768px) {
+    body.woocommerce-account:not(.logged-in) .woocommerce .u-columns {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Layout vertical limpio para login/registro (evita columnas desalineadas por floats de WooCommerce) */
+body.woocommerce-account:not(.logged-in) .woocommerce .u-columns {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+}
+
+body.woocommerce-account:not(.logged-in) .woocommerce .u-column1,
+body.woocommerce-account:not(.logged-in) .woocommerce .u-column2,
+body.woocommerce-account:not(.logged-in) .woocommerce .col-1,
+body.woocommerce-account:not(.logged-in) .woocommerce .col-2 {
+    float: none !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+}
+
+/* Default (opcion 1): mostrar solo login */
+body.woocommerce-account:not(.logged-in):not(.ti3d-show-register) .woocommerce .u-column2,
+body.woocommerce-account:not(.logged-in):not(.ti3d-show-register) .woocommerce .col-2 {
+    display: none !important;
+}
+
+/* Modo registro: mostrar solo registro */
+body.woocommerce-account:not(.logged-in).ti3d-show-register .woocommerce .u-column1,
+body.woocommerce-account:not(.logged-in).ti3d-show-register .woocommerce .col-1 {
+    display: none !important;
+}
+
+body.woocommerce-account:not(.logged-in).ti3d-show-register .woocommerce .u-column2,
+body.woocommerce-account:not(.logged-in).ti3d-show-register .woocommerce .col-2 {
+    display: block !important;
+}
+
+/* Enlace de cambio entre login/registro */
+body.woocommerce-account:not(.logged-in) .ti3d-account-switch {
+    margin: 16px 0 0 !important;
+    color: var(--color-gray-text) !important;
+    font-size: 0.92rem;
+    text-align: center;
+}
+
+body.woocommerce-account:not(.logged-in) .ti3d-account-switch a {
+    color: var(--color-gold) !important;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+body.woocommerce-account:not(.logged-in) .ti3d-account-switch a:hover {
+    color: var(--color-gold-light) !important;
+    border-bottom-color: var(--color-gold);
+}
+
+/* Pulido visual login/registro (no logueado) */
+body.woocommerce-account:not(.logged-in) .entry-header {
+    display: none !important;
+}
+
+body.woocommerce-account:not(.logged-in) .woocommerce .u-column1 > h2,
+body.woocommerce-account:not(.logged-in) .woocommerce .u-column2 > h2,
+body.woocommerce-account:not(.logged-in) .woocommerce .col-1 > h2,
+body.woocommerce-account:not(.logged-in) .woocommerce .col-2 > h2 {
+    text-align: center !important;
+    color: var(--color-gold) !important;
+    font-size: 1.55rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 28px !important;
+    margin-left: 0 !important;
+    padding-bottom: 14px !important;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.28) !important;
+}
+
+/* ===========================================
+   AJUSTES MI CUENTA (LOGUEADO): MENSAJES + DIRECCIONES
+   =========================================== */
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-info,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-message {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    flex-wrap: wrap !important;
+    padding: 16px 18px !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-info::before,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-message::before {
+    content: none !important;
+    display: none !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-info .button,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-message .button,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-info .woocommerce-Button,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-message .woocommerce-Button {
+    float: none !important;
+    margin: 0 0 0 auto !important;
+    white-space: nowrap;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .u-columns.woocommerce-Addresses,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .u-columns.woocommerce-Addresses .u-column1,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .u-columns.woocommerce-Addresses .u-column2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses .col-1,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses .col-2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address {
+    float: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 22px !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address-title,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address header {
+    background: transparent !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses address,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses p {
+    background: transparent !important;
+    color: var(--color-text) !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses h3 {
+    color: var(--color-gold) !important;
+}
+
+@media (max-width: 980px) {
+    body.woocommerce-account.logged-in .woocommerce-MyAccount-content .u-columns.woocommerce-Addresses,
+    body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Hotfix fuerte direcciones: anula floats/clear por defecto de WooCommerce */
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    align-items: stretch !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 {
+    float: none !important;
+    clear: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    background: var(--color-dark) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 18px !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 header,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 header,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 header,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 header {
+    margin: 0 !important;
+    padding: 0 0 12px !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    background: transparent !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 h3 {
+    color: var(--color-gold) !important;
+    margin: 0 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.35 !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses address {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--color-text) !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses::before,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses::after {
+    content: none !important;
+    display: none !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+}
+
+/* Titulo en dorado en editar/crear direccion */
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content form.edit-address h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content form.edit-address h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content form.woocommerce-Address h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content form.woocommerce-Address h3 {
+    color: var(--color-gold) !important;
+}
+
+@media (max-width: 980px) {
+    body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1,
+    body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2,
+    body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1,
+    body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+}
+
+/* Pulido final: ocultar titulo de pagina y unificar titulos internos en dorado */
+body.woocommerce-account.logged-in .entry-header {
+    display: none !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content > h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content > h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content form h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content form h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Address-title h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Address-title h3 {
+    color: var(--color-gold) !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+}
+
+/* Ajuste visual de cards de direcciones (misma jerarquia y alineacion) */
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 header,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 header,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 header,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 h2,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 h3,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 h3 {
+    text-transform: none !important;
+    letter-spacing: 0.2px !important;
+    font-size: 1.15rem !important;
+    line-height: 1.3 !important;
+    min-height: 2.6em;
+    margin: 0 !important;
+}
+
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-1 header a,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .col-2 header a,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column1 header a,
+body.woocommerce-account.logged-in .woocommerce-MyAccount-content .woocommerce-Addresses > .u-column2 header a {
+    margin-top: 0 !important;
 }
 
